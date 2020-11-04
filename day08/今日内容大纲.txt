@@ -1,0 +1,75 @@
+01 今日内容大纲
+02 昨日内容回顾以及作业讲解
+    1.数据类型的补充
+        str:
+        tuple:
+            (1) ---->int
+            ('alex') ---->str
+            count,index
+        list:
+            sort
+            sort(reverse=True)
+            reverse()
+            列表相加，列表与数字的相乘
+            循环列表的问题
+        dict:
+            update更新，增加值，修改值，创建字典，将一个字典的所有建制对覆盖添加到另一个
+            字典
+            fromkeys:面试经常考
+            循环字典的问题
+        数据类型的转化: 0 {} set() None [] ''
+        编码进阶:
+            ascll, gbk, unicode,utf-8, big5
+            1.所有的编码本（除去Unicode之外）不能直接互相识别
+            2.在内存中所有的数据类型必须是Unicode编码存在，除去bytes
+            int
+            bool
+            tuple    str    bytes
+            list
+            dict
+            set
+03 今日内容
+    1.文件操作的初始
+        1.文件路径:path
+        2.打开方式：读，写，追加，读写，写读
+        3.编码方式
+
+        报错原因：
+            UnicodeDecodeError:文件存储是与文件打开时编码本不一致
+            第二个错误：路径分隔符产生的问题
+                r'C:\Users\Administrator\Desktop\哈哈哈.txt'
+    2.文件操作的读
+        r,rb,r+,r+b四种模式
+        r:read()**                    read(n)readine()readines()
+        for ***
+        rb:操作的是非文本的文件，图片，视频，音频
+
+    3.文件操作的写
+        w，wb，w+，w+b四种模式
+    4.文件操作的追加
+        a，ab，a+，a+b 四种模式
+    5.文件操作的其他模式
+        r+
+    6.文件操作的其他功能
+        总结：
+            三个大方向：
+                读：四种模式：r，r+，rb，r+b
+                写：四种模式：w，w+，wb，w+b
+                追加：四种追加：a，a+，ab，a+b
+            相应的功能：
+                对文件句柄的操作：read,read(n) readile() readiles() write()
+    7.打开文件的；另外一种方式
+    8.文件操作的改
+04 今日总结
+    文件操作
+        r，w，a，rb，wb，r+，ab 重点记
+        read() write()
+        tell() 文件的字节数,seek() 记住光标位置,flush() 强制保存
+        文件改的代码必须会默写
+            读文件
+            写新文件
+            替换
+            删除原文件
+            改新文件的名字为原文件的名字
+05 预习内容
+    函数的初始

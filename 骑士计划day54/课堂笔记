@@ -1,0 +1,25 @@
+1.内容回顾
+    1.mysql面试题
+    2.Bootstrap
+        1.Bootstrap介绍
+        2.Bootstrap的版本
+        3.Bootstrap的使用
+            1.可以使用下载到本地的
+            2.使用CMD
+            3.导入
+                1.导入css
+                2.导入js(一定要先导入jquery)
+            4.jquery的栅格系统
+                1.container容器
+                2.row，均分成12份
+                3.col-xx-**,只有列能做作为行的直接子元素
+                    1.xx:xs->sm->md->lg
+                    2.**:1-12
+            5.jquery 常用样式
+
+2.今日内容
+    1.Bootstrap常用组件
+        1.内置图标
+            1.使用span标签加calss
+            2.fontawesome图标
+                1.使用i标签加calss

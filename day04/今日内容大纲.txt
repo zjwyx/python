@@ -1,0 +1,65 @@
+01 课前小甜点
+02 昨日内容回顾
+    int str bool 三种类型的转化
+    int <====> bool
+        非：0 true  0 False
+        true 1  false 0
+    int <====> str
+        str(123)
+        int("123") :字符串必须全部是数字组成
+    bool<====> str
+        非空 true  空字符串   False
+        str(True)
+
+    s1 = "alexsb"
+    1.索引
+        s1[0]
+    2.切片 顾头不顾尾
+        s1[0:4]
+    3.切片 + 步长
+        s1[::2]
+
+    操作方法：
+        join(): list ---- str
+            '_'.join(interblr)
+        strip()  默认去除首位的空格，换行符，制表符
+            strip(元素)
+            lstrip() 首去除
+            rstrip() 尾去除
+        center() 居中 空白用任意字符填充
+        title() 每个非字母隔开的内容的首字母大写
+        upper() 全部大写
+        lower() 全部小写
+        startswith()  判断以什么开头
+        endswitch()   判断以什么结尾
+        swapcase(): 大小写反转
+        len()  统计字符串中字符的个数
+        captilize() 首字母大写,其余的变小写
+        find() index() 通过元素找索引
+        count() 出现的次数
+        replace() 替换(old,new,次数)
+        format()格式化输出
+            :'{}{}{}'.format("alex","man",12)
+            :'{0}{1}{2}'.format("alex","man",12)
+            :'{name}{age}{sex}'.format(name="alex",age="man",sex=12)
+        split():字符串<===>列表
+            'alex wusir'.split() ===>['alex','wusir]
+        is系列：
+            isdigit() 判断字符串全部由数字组成
+            isalpha()
+            isalnum() 全部有字母或数字徐成
+
+
+03 作业讲解
+
+04 列表
+05 列表的索引，切片，步长
+06 列表的常用操作
+    增
+    删
+    改
+    查
+07 列表的嵌套
+08 range
+09 预习内容
+10 今日作业

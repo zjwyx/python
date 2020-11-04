@@ -1,0 +1,140 @@
+1.内容回顾
+    1.web框架的原理(02-07示例)
+        1.socket
+        2.HTTP协议
+            1.请求(request)     ------>浏览器给服务器发消息
+                1.请求的消息格式
+                    请求行(GET /home/ HTTP/1.1)
+                    请求头
+
+                    请求数据(可有可无)
+            2.响应(response)    ------>服务器给浏览器回消息
+                1.响应的消息格式
+                    响应行(HTTP/1.1 200 OK)
+                    响应头(给浏览器看的那些信息)
+
+                    响应数据(真正显示在浏览器上给用户看的那些数据)
+            3.版本
+                1.HTTP/1.1   -->1999    目前绝对主流
+                2.HTTP/2     -->2015
+            4.HTTP请求的方法
+                1.GET
+                2.POST
+                3.HEAD
+                4.DELETE
+                5.PUT
+                6.OPTIONS
+                7.CONNECT
+            5.默认端口
+                1.HTTP默认端口是80
+                2.HTTPS默认端口是443
+            6.常见的状态码
+                1.1xx   --> 请求的消息被接受到等待后续处理
+                2.2xx   --> ok
+                3.3xx   --> 重定向
+                4.4xx   --> 客户端请求错误
+                5.5xx   --> 服务端有问题
+            7.url的构成
+                详见博客
+        3.web服务器程序和web应用程序
+            1.web服务器程序：uWSGI,Gunicorn，wsgiref
+            2.web应用程序：Django，Flask等等
+            3.WSGI协议：规定了python web开发中web服务器程序和web应用程序通信的格式
+        4.python web框架分类
+            1.按照实现的功能划分
+                a.收发socket
+                b.根据不同的url执行不同的函数
+                c.字符串的替换
+
+                1.自己实现b和c，使用第三方的a       -->Django
+                2.自己实现b，使用第三方的a和c       -->Flask
+                3.自己实现a，b,c                  -->Tornado
+            2.按照框架的特质分
+                1.Django（大而全）
+                2.其他
+
+        5.Django
+            1.安装
+                pip install django == 1.11.16
+                pip install django == 1.11.16 -i 临时指定pypi源
+
+                pip -V                      --> 查看pip版本和来自哪个python解释器
+                pip list                    --> 查看当前python解释器中安装的第三方包和版本号
+                pip uninstall django        -->卸载
+                pip freeze > requirements.txt  --> 当前python解释器环境的第三方包名和版本号导出到requirements.txt中
+                pip install -r requirements.txt  --> 递归的按照requirements.txt中列出来的安装
+
+            2.创建Django项目
+                1.命令行
+                    1.django-admin startproject 项目名
+                2.pycharm
+                    1.File -> new project -> 左边选Django，右边写项目名字和选python解释器
+            3.启动
+                1.命令行
+                    1.切换到项目的根目录下面
+                    2.运行：python3 manage.py runserver
+                            python2 manage.py runserver 127.00.1:8088
+                            python2 manage.py runserver 8088
+                2.pycharm
+                    1.先看绿色三角左边的名字和项目名是否一致，一致才能进行下一步
+                    2.用鼠标点一下绿色的三角
+            4.Django项目的目录
+                1.mysite
+                    -mysite
+                        -__init__.py
+                        -url.py(函数和函数对应关系)
+                        -settings.py(Django项目的配置信息)
+                        -wsqi.py(收发socket消息相关)
+                    -manage.py(命令行入口文件)
+                    -template(专门用来放HTML文件的)
+            5.基础必回三件套
+                1.HttpResponse
+                2.render
+                3.redirect
+
+2.今日内容
+    1.登录示例
+        1.form表单提交数据的三个关键
+            1.form标签必须要有action和method属性
+            2.form标签中获取用户输入的标签必须要有name属性
+            3.form标签中必须要有submit按钮
+        2.request
+            1.request.POST   -->所有POST请求提交的数据（类似一个大字典）
+            2.request.POST['pwd']
+            2.request.POST.get('pwd')    -->推荐使用这个
+
+        3.基础必会三件套
+            1.HttpResponse   --> 返回简单的字符串
+            2.render         --> 返回HTML页面
+            3.redirect       --> 返回一个重定向（跳转）
+
+        4.request.method  --> 获取当前请求的方法
+
+        5.render方法传递额外的参数
+            render(request,'xx.html',{'a':'aa','b':'bbb'})
+            本质上就是一个字符串替换。
+        6.Django app
+            1.创建app01  --> python manage.py startapp app01
+            2.在settings.py中告诉Django，我现在有了一个app
+
+    2.总结
+        1.现阶段(Django基础)创建Django项目的步骤
+            1.pycharm或者命令行创建一个Django项目名
+                django-admin startproject 项目名
+            2.创建一个初始的app，并且在settings.py中告诉Django
+                python manage.py startapp app的名字
+            3.检查settings.py 专门存放HTML文件的Tempaltes的配置项
+            4.配置静态文件相关
+                1.STATIC_URL = '/static/'
+                2.STATICFILES_DIRS = [
+                    os.path.join[BASE_DIR,'static']
+                  ]
+                3.在项目的根目录创建一个用来存放静态文件的static目录
+            5.注释csrf相关的哪一行(大概在46行)（提交数据）
+                否则表单没办法提交数据，就会提示Forbidden 403的错误
+
+
+
+3.今日作业
+    1.自己独立写完上午不规范的写法
+    2.用app的标准套路写一个登录示例

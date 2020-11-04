@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filter相关的语法</title>
+</head>
+<body>
+{% load suibian %}
+<p>{{ name|sb }}</p>
+<p>{{ age|default:'保密' }}</p>
+<hr>
+<p>length</p>
+<p>{{ name|length }}</p>
+<hr>
+<p>{{ file_size }}</p>
+<p>{{ file_size|filesizeformat }}</p>
+<hr>
+<p>{{ name|slice:'1:-1' }}</p>
+<hr>
+<p>date</p>
+<p>{{ now }}</p>
+<p>{{ now|date:'Y-m-d H:i:s' }}</p>
+<hr>
+<p>模板语言中默认会把标签都转义了</p>
+<p>{{ a }}</p>
+<p>{{ a|safe }}</p>
+<hr>
+<p>{{ p }}</p>
+<p>{{ p|truncatechars:'10' }}</p>
+<p>truncatewords是按照空格区分不同的字</p>
+<p>{{ p_1|truncatewords:'5' }}</p>
+<hr>
+<p>{{ p_2|cut:'a' }}</p>
+<hr>
+<p>{{ list1|join:'阿玟' }}</p>
+<hr>
+<p>{{ hourse5|timesince }}</p>
+<hr>
+<p>for循环</p>
+<ul>
+    {% for sb in list1 %}
+        <li>{{ forloop.counter }} -- {{ sb }}</li>
+
+    {% endfor %}
+
+</ul>
+<hr>
+
+<p>{{ t1|wrc }}</p>
+<p>{{ t2|wrc }}</p>
+<p>{{ t3|wrc }}</p>
+
+
+</body>
+</html>

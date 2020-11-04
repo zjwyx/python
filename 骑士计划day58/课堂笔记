@@ -1,0 +1,95 @@
+1.内容回顾
+    1.ORM
+        1.ORM介绍
+            1.不同自己写SQL语句
+            2.开发效率高
+        2.Django中ORM如何连接mysql
+            1.创建数据库
+            2.告诉Django连那个一个数据库
+            3.告诉Django用什么连  (在setting.py同级的__init__.py中添加
+                import pymysql
+                pymysql.install_os_MySQLdb()
+            4.在app/models.py按照格式(必须继承models.Model)写一个类
+            5.运行两条命令
+                1.python manage.py makemigrations  --> 把models.py的改动记录到小本本上
+                2.python manage.py migrate         --> 把变更记录翻译成sql语句去数据库执行
+        3.ORM单表的增删改查
+            1.查
+                1.类名.object.all()        --> 查找数据库中该表的所有数据
+                2.类名.object.filter(条件)  --> 根据给定的条件取数据中查找，返回的是列表
+                3.类名.object.get(条件)     --> 根据条件找到一个对象（找到多个或者找不到都报错），返回的是对象
+            2.增
+                1.类名.object.create()
+            3.删
+                1.类名.object.filter(条件).delete()
+                2.类名.object.get(条件).delete()
+            4.改
+                1.
+                    obj = 类名.object.get(条件)
+                    obj.属性 = ‘新的值’
+                    obj.save()
+                2.update
+                    类名.object.finter(条件).update(字段=’新值‘)
+    2.Django
+        1.现阶段新建Django项目的步骤
+            1.创建项目
+            2.配置setting.py
+                1.检查Templates文件夹是否配置好
+                2.配置静态文件相关
+                    1.STATIC_URL = '/static/'  --> 默认配置好的
+                    2.STATICFILES_DIRS = [
+                        os.path.join(BASE_DIT,'STATIC')
+                    ]
+                3.注释掉csrf相关的哪一行（中间件的地方会讲）
+                4.配置好数据库的连接信息
+                5.INSTALLED_APPS = [
+                    自己的app      --> 先创建App在注册App
+                ]
+    3.Django中知识点
+        1.request   --> 所有跟请求相关的数据都封装到这个对象
+            1.request.method   --> 请求方法的全大写（GET/POST）
+            2.request.GET           --> 获取url中的参数（类似字典）
+            3.request.POST          --> 获取POST请求中携带的参数（类似字典）,post请求的url也可以带参数
+        2.基础必会三件套
+            1.HttpResponse
+            2.render
+                1.render(request,'xx.html',{'key':'value'})
+            3.redirest
+                1.redirect('/publisher_list/')
+                1.redirect('https://www.baidu.com')
+
+
+2.今日内容
+    1.书籍的增删改查
+        0.ORM中定义外键
+            models.ForeignKey(to='外键关联的类名')
+            注意事项：
+                ORM在数据库中会给外键字段自动加_id
+        1.查询
+            book_obj.publisher      --> 书籍关联的出版社对象
+            book_obj.publisher_id   --> 书籍关联的出版社id（数据库中真正保存的哪一列的值）
+        2.删除
+        3.添加
+            1.添加页面把所有的出版社数据展示成select标签
+            2.模态框添加，区别于跳转到新页面添加
+            3.添加（注意参数）
+                1.Book.objects.create(title=new_title,publisher_id=new_publisher)
+                2.Book.objects.create(title=new_title,publisher=Publisher.object.get(id=publisher_id))
+        4.编辑
+            1.模板语言
+                {% if publisher == book.publisher %}
+                    <option selected value="{{ publisher.id }}">{{ publisher.name }}</option>
+                {% else %}
+                    <option  value="{{ publisher.id }}">{{ publisher.name }}</option>
+                {% endif %}
+            2.注意.save()
+
+
+
+
+
+3.今日作业
+    1.把课上的代码自己敲一遍
+        1.重点理解 模态框版的添加
+        2.外键的查询，添加和修改
+    2.明天默写（现阶段创建Django项目的步骤）

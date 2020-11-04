@@ -1,0 +1,85 @@
+1.内容回顾
+    1.python基础
+        1.python语法
+        2.网络编程
+        3.并发编程
+    2.mysql
+        1.sql语句
+    3.前端
+        1.HTML
+        2.css
+        3.js/jquery
+        4.Bootstrap
+
+2.今日内容
+    1.web框架的原理
+        1.浏览器(socket客户端)            网站的服务器(socket服务端)
+        2.http协议
+            1.目前用的版本：http/1.1,最新的版本是http/2
+            2.http默认端口80，https默认端口是443
+            3.请求(request)的消息格式
+                1.请求行
+                2.请求体
+                3.空行
+                4.请求数据
+            4.响应(response)的消息格式
+                1.响应行
+                2.响应头
+                3.空行
+                4.请求数据
+        3.web框架原理总结
+            1.收发socket消息（web服务器程序） ---> uwsqi,gunicorn,wsgiref (Nginx和Tomcat)
+                WSGI协议
+            2.业务逻辑不同（web应用程序）      ---> Django Flask webpy bottle tornado
+
+        4.wsgiref简单示例
+            1.使用wsgiref收发socket消息
+        5.jinja2简单实例（未成功，待测试）
+            1.使用jinja2进行字符串的替换
+
+
+        6.python中web框架的分类
+            a.收发socket消息
+            b.根据不同的url执行不同的函数（业务逻辑）
+            c.字符串替换（动态网页）
+
+            1.第一种分类：（按照上main的三部分功能划分）
+                1.自己实现b和c，使用第三方的a  -->Django
+                2.自己实现b，使用第三方a和c    -->Flask
+                3.自己实现a,b,c              -->Tornado
+            2.第二种分类
+                1.Django（大而全）
+                2.其他
+
+    2.Django安装
+        1.安装
+            1.命令行安装
+                1.pip install django==1.11.16
+                补充：
+                    1.pip install django==1.11.16 -i https://pypi.tuna
+                    2.pip list
+            2.pycharm安装
+                1.见图
+        2.创建我们第一个Django项目
+            1.命令行创建
+                django-admin startproject 项目名
+            2.Pycharm创建
+                File -> new project ->左边选第二项，右边填项目名并且选择python解释器
+            3.运行Django项目
+                1.命令行
+                    1.切换到项目的目录下
+                    2.python manage.py runserver
+                    3.python manage.py runserver 1270.0.1:8080
+                    4.python manage.py runserver 8089
+                2.pycharm
+                    点击绿色的三角
+
+            4.使用Django项目
+                1.基础必回三件套
+                    1.返回字符串      HttpResponse
+                    2.返回HTML文件    render
+
+3.今日作业
+    1.写一个Django项目
+        1.login  --> Bootstrap那个登录页面
+        1.index  --> Bootstrap修改的页面

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>出版社名称</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <td>#</td>
+        <td>id</td>
+        <td>出版社名字</td>
+        <td>地址</td>
+        <td>成立时间</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in publi %}
+    <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.id }}</td>
+    <td>{{ i.name }}</td>
+    <td>{{ i.addr }}</td>
+    <td>{{ i.date|date:'Y-m-d' }}</td>
+    </tr>
+    {% endfor %}
+
+
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,155 @@
+01 今日内容大纲
+    1.自定义模块
+    2.模块是什么
+    3.为什么有模块
+        什么是脚本
+    4.模块的分类
+    5.import的使用
+        第一次导入模块执行三件事
+        被导入模块有独立的名称空间
+        为模块起别名
+        导入多个模块
+    6.from...import...
+        from...import...的使用
+        from...import...与import的对比
+        一行导入多个
+        from...import...
+        模块循环导入的问题
+        py文件的两种功能
+    7.json，pickle 模块
+    8.hashlib 模块
+02 具体内容
+    1.自定义模块
+    2.模块是什么？
+        抖音：20万行代码全部放在一个py文件中
+        为什么不行？
+            1.代码太多，读取代码耗时长
+            2.代码不容易维护
+            所以我们怎么样？
+            一个py文件拆分成100文件，100个py文件又有相似相同的功能，冗余
+            此时你将要100py文件中相似相同的函数提取出来，
+            input 功能，print()功能，time.time() os.path...放在一个文件
+            当你想用这个功能拿来即用，类似于这个py文件，常用的相似的功能集合，模块
+            模块就是一个py文件常用的相似的功能集合
+
+    3.为什么有模块
+        拿来主义，提高开发效率
+        便于管理维护，
+        什么是脚本
+            脚本就是py文件，长期保存代码的文件
+    4.模块的分类
+        1.内置模块200种左右，python解释器自带的模块，time,os,sys,hashlib等等
+        2.第三方模块600种，一些大牛，大神写的，非常好用的，pip,install需要这个指令安装的模块，Beautiful_soup
+        request,Django,flask等
+        3.自定义模块，自己写的一个py文件
+    5.import的使用
+        import 模块，要先怎么样？
+        import tbjx 执行一次tbjx这个模块里面的所有代码
+        第一次引用tbjx这个模块，会将这个模块里面的所有代码加载到内存，只要你的程序没有结束，接下来你在引用多少次，
+        它会先从内存中寻找有没有此模块,如果已经加载到内存中，就不在重复加载
+
+        第一次导入模块执行三件事
+            1.在内存中创建一个以tbjx命名的名称空间
+            2.执行此名称空间所有的可执行的代码（将tbjx.py文件中所有的变量与值的对应关系加载到这个名称空间）
+            3.通过tbjx.的方式引用模块里面的代码
+        被导入模块有独立的名称空间
+
+        为模块起别名
+            1.简单，便捷
+            2.有利于代码的简化
+
+        导入多个模块
+            import time
+            import os
+            import sys
+
+    6.from...import...
+        from...import...的使用
+            from tbjx import name
+            print(name)
+        from...import...与import的对比
+            1.from...import用起来更方便
+            2.from...import 容易与本文件的名字产生冲突
+                # 1.容易产生冲突，后者将前者覆盖
+                # name = 'alex'
+                # from tbjx import name
+                # print(name)
+            3.当前位置直接使用read1和read2，执行时，任然一tbjx.py文件全局名称空间
+                # from tbjx import read1
+
+                # def read1():
+                #     print(666)
+                # name = '大壮'
+                # read1()
+
+
+                from tbjx import change
+                name = 'alex'
+                # alex
+                print(name)
+                # barry
+                change()
+                # alex
+                print(name)
+        一行导入多个
+            from tbjx import name
+            from tbjx import read1
+
+        from...import*
+        模块循环导入的问题
+
+        py文件的两种功能：
+            1.自己用 脚本
+            2.被别人引用 模块使用
+
+        模块的搜索路径(重中之重)
+            import sm
+                1.他会先从内存中寻找有没有已经存在的以sm命名的名称空间
+                2.它会从内置模块中找，time，sys，os，等等
+                3.他从sys.path中查找（重点）
+    7.json，pickle 模块
+        序列化模块：将一种数据结构（list，tuple，dict...）转化成特殊的序列
+        为什么存在序列化模块？
+        数据 ----> bytes
+        只有字符串类型和bytes可以互换
+        dict，list... ----> str <------->bytes
+        数据存储在文件中，str形式存储，比如字典
+        数据通过网络传输(bytes类型)，str不能还原回去
+        特殊的字符串：序列化
+        序列化模块：
+             json模块 ： （重点）
+                1.不同语言都遵循的一种数据转化格式，即不同语言都使用的特殊字符串。（比如Python的一个列表[1, 2, 3]利用json转化成特殊的
+                字符串，然后在编码成bytes发送给php的开发者，php的开发者就可以解码成特殊的字符串，
+                然后在反解成原数组(列表): [1, 2, 3]）
+                2.json序列化只支持部分Python数据结构：dict,list, tuple,str,int, float,True,False,None
+
+             pickle模块：
+                1.只能是Python语言遵循的一种数据转化格式，只能在python语言中使用。
+                2.支持Python所有的数据类型包括实例化对象。
+
+             json：将数据结构转化成特殊的字符串，并且可以反转回去
+             两对四种方法
+             网络传输
+
+    8.hashlib 模块
+        包含很多的加密算法，MD5，shal，sha256，sha512
+        用途：
+            1.密码加密，不能以明文的形式存储密码，密文的形式
+            2.文件的校验
+        用法：
+            1.将bytes类型字节转化成固定长度的16进制数字组成的字符串
+            2.不同的bytes利用相同的算法（MD5）转化成的结果一定不同
+            3.相同的bytes利用相同的算法（MD5）转化成的结果一定相同
+            4.hashlib算法不可逆（md5）
+03 今日总结
+    1.import 三件事，import的名字如何调用？mokuaiming.的方式
+    2.from...import...容易产生冲突，独立的空间
+    3.__name__问题
+    4.模块的搜索路径
+        内存，内置，sys.path
+    5.序列化模块：
+        1.json最最常用（两对四个方法就行），一定要掌握
+        2.pickle（两对四个方法就行） 尽量掌握
+    6.hashlib
+        1.密码的加密，文件的校验
+04 预习内容

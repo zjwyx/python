@@ -1,0 +1,141 @@
+1.内容回顾
+    1.Django登录示例
+        1.form表单提交数据的三个要点（下周一默写）
+            1.form标签要有action和method属性，如果有文件的还需要设置enctype属性
+            2.获取用户输入的变迁必须要设置name属性
+            3.form标签中必须要有submit按钮
+        2.request
+            1.request.POST      --> 类似于字典，可以按照字典的方式取值
+            1.request.method    --> 得到请求的方法（全部大写）
+        3.基础必会三件套
+            form Django.shortcuts import HttpResponse,render,redirect
+            1.HttpResponse    --> 返回字符串
+            2.render          --> 返回HTML
+                1.render(request,'login.html')
+                2.render(request,'login.html',{'error_msg':error_msg})
+            3.redirect        --> 重定向（跳转）
+                1.redirect('/index/')    --> 在同一个网站的不同地址之间跳转  相对地址
+                2.redirect('https://www.baidu.com')  --> 跳转到具体的url   绝对地址
+        4.Django app
+            1.为什么要用app？
+                一个Django项目中可以以app为单位划分不同的功能
+            2.如何创建app
+                1.python manage.py srartapp app项目名
+                2.在settings.py中，在INSTALLED_APPS中注册我们刚创建的app
+        5.Django请求的六张图
+            1.web开发本质上就是浏览器和服务器收发消息
+        6.问题
+            1.请求的流程不太清楚
+            2.浏览器的刷新按钮是重复上一步的动作
+            3.request.method返回的就是http请求的方法
+            4.http请求一次请求一次响应就完事儿
+            5.为什么要注册app？
+                Django项目中需要以app为单位来管理
+            6.app是application的简写，类似于一个手机安装了多个app，Django中app之间是可以相互通信的
+            7.http协议是基于tcp/ip的
+
+2.今日内容
+    1.ORM(对象关系映射)  很多语言的很多web框架中都有这个概念
+
+    2.为什么要有ORM？
+        1.写程序离不开数据
+        2.在程序中要用到数据库中的数据，怎么办？
+            1.使用pymysql连接mysql数据库的步骤
+                1.import pymysql
+                2.建立连接
+                    conn = pymysql.connect(
+                        host='127.0.0.1',
+                        port=3306,
+                        user='root',
+                        password='123456',
+                        database='day43',
+                        charset='utf8'
+                    )
+                3.获取光标
+                    cursor = conn.cursor()                                  -->[(),()]
+                    cursor = conn.cursor(cursor=pymysql.cursor.DictCursor)  -->[{},{}]
+                4.执行sql语句
+                    cursor.execute('select * from userinfo')
+                    cursor.execute('select * from userinfo where username=%s and password=%s',['awen','123456'])
+                5.获取结果
+                    1.cursor.fetchone()
+                    2.cursor.fetchall()
+                    3.cursor.fetchmany(n)
+
+            2.ORM
+                1.新的语法，不需要我们自己写sql语句
+                2.我们按照新的语法写代码，他帮我翻译成sql语句
+
+                3.ORM优点：
+                    1.开发效率高
+                    2.容易掌握
+                    3.容易移植
+                4.ORM的缺点：
+                    1.代码的执行效率低
+                5.ORM的重点
+                    类          <-->     数据表
+                    属性        <-->      字段
+                    对象        <-->      数据行
+                6.ORM能做哪些事情？
+                    1.操作数据表
+                    2.操作数据行
+
+                6.Django中的ORM如何使用？
+                    1.告诉Django框架连接那个数据库
+                        说白了就是创建一个数据库
+                        DATABASES = {
+                            'default': {
+                                'ENGINE': 'django.db.backends.mysql',    # 告诉Django要连接的是mysql数据库
+                                'NAME': 'day57',        # 数据库名字
+                                'HOST':'127.0.0.1',     # 数据库IP
+                                'PORT':3306,            # 数据库的端口
+                                'USER':'root',          # 数据库的账号
+                                'PASSWORD':'123456'     # 数据库的密码
+                            }
+                        }
+                    2.告诉Django框架用什么连接数据库
+                        说白了就是在Django框架中的setting.py中配置数据库选项，并在init文件中替换
+                        在和setting.py同目录下的__init__.py文件中
+                        import pymysql
+                        pymysql.install_as_MySQLdb()
+
+                    3.在app下面的models.py这个文件中定义
+                        说白了就是创建类相当于创建表，属性就是字段
+                        class 类名(models.Model):
+                            pass
+
+                    4.两个命令
+                        1.python manage.py makemigrations           --> 在小本本（app/migrations）上记录models.py的变更
+                        2.python manage.py migrate                  --> 把变更记录翻译成sql语句，去数据库执行
+                7.图书管理系统
+                    1.表结构
+                        1.出版社
+                        2.书籍
+                        3.作者表
+                        4.作者和书籍的关系表
+
+                    2.出版社的增删改查
+                        1.查
+                            1.ORM  Publisher.objects.all() -->查询所有的出版社数据
+                            2.HTML中写for循环(模板语言)
+                                {% for i in [] %}
+                                {% endfor %}
+                        2.增
+                            1.ORM创建数据
+                                Publisher.objects.create(name='新出版社名称')
+                        3.删
+                            1.HTTP中URL添加参数
+                                /delete_public/?id=1
+                            2.如何在Django中获取url中的参数
+                                request.GET         --> 一个大字典
+                                request.GET.get     --> 取值
+                            3.orm中删除操作
+                                Publisher.object.filter(id=1).delete()
+                        4.改
+                            1.orm修改
+                                obj.name = '新出版社名字'
+                                obj.save()   --> 把改动提交到数据库
+
+3.今日作业
+
+4.周末作业

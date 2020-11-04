@@ -1,0 +1,42 @@
+01 上周内容回顾
+    while 条件：
+        循环体
+    例:
+    while True:
+        pint(111)
+        pint(222)
+        pint(333)
+    结束循环的两种方式:
+    1.改变条件
+    2.break
+
+    #continue 跳出本次循环
+
+    while else  如果while循环体被break打断，就不会执行else语句
+    and or not
+
+    1.两边都是比较运算
+    1 > 2 adn 3 < 4 or 5 > 7
+    () > not > and > or
+    2.两边都是数字
+    x or y if x is True , return x
+    3.混合运算:
+    1 or 3 and 4 < 6
+    编码初始
+
+02 作业讲解
+03 基础数据类 总览
+    int:用于计算，计数，运算等。1,2,3,1000
+    str:"这些内容"  用于少量数据的存储，便于操作
+    bool：True，False 两种状态，机器反馈给用户对于错
+    list：[1,'zlex',True,[],(),{}....]大量的数据，各种数据类型，操作方便相当于js中的数组
+    tuple:(1,'zlex',True,[],(),{}....)只读列表，只能读，不能修改
+    dict：字典，大量的关联型数据
+    {"k":"v"}相当于js中的json对象
+    set:集合，{} 关系测试
+04 int
+05 bool
+06 str    三者的转化   索引值，切片   方法
+07 for循环
+08 预习博客
+09 今日作业

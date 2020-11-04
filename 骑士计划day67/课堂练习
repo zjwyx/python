@@ -1,0 +1,99 @@
+1.内容回顾
+    1.ORM进阶操作
+        1.自关联
+        2.一对多和多对多提供的方法
+            1.all()
+            2.add()
+            3.set()
+            ForeignKey(null=True)
+            4.cleatr()
+            5.remove()
+
+        3.聚合和分组
+            1.聚合函数
+                1.from django.db.models import Avg,Sum,Max,Min,Count
+                2.搭配aggregate()
+                3.aggregate()是QurySet的终止字句
+
+
+            2.分组查询(annotate)
+                1.annotate前面查的是什么就按照分组
+                2.annotate里面写分组之后要做的事儿
+
+        4.如何查看ORM执行的原生的SQL语句
+            1.在setting.py中配置LOGGING配置项
+                LOGGING = {
+                    'version': 1,
+                    'disable_existing_loggers': False,
+                    'handlers': {
+                        'console':{
+                            'level':'DEBUG',
+                            'class':'logging.StreamHandler',
+                        },
+                    },
+                    'loggers': {
+                        'django.db.backends': {
+                            'handlers': ['console'],
+                            'propagate': True,
+                            'level':'DEBUG',
+                        },
+                    }
+                }
+        5.对象.属性修改和Queryset update修改
+            1.对象.属性修改
+                1.需要save()
+                2.会更新所有的字段
+            2.Queryset update修改
+                1.只会修改指定的字段
+
+        6.F和Q
+            1.F查询
+                1.使用场景
+                    1.涉及到字段和字段之间比较
+                    2.涉及到字段在原基础上更新
+                2.补充字符串的拼接
+
+            2.Q查询
+                1.使用场景
+                    1.查询满足 条件1或条件2
+                2.如果Q查询和关键字查询都有，必须把Q查询放在前面
+        7.执行事务操作
+            from django.db import transaction
+            with transaction.atomic():
+                # ORM语句
+        8.执行原生SQL的两种方式
+            1.raw()
+            2.form django.db import connection
+                就像使用pymysql一样
+                from django.db import connection
+                cursor = connection.cursor()
+                cursor.execute('select * from app01_book;')
+                ret = cursor.fetchall()
+        9.QuestSet方法补充
+            1.批量创建
+                bulk_create()
+            2.only()/defer()                                -->优化单表查询的性能
+            3.select_related()和prefetch_related()          -->优化连表查询的性能
+            4.extra()                                        --> 相当于一半ORM一半SQL
+            5.using()                                        -->指定使用的数据库（setting.py中配置了多个数据库时）
+
+
+2.今日内容
+    0.预备知识
+        1.JSON格式数据
+            1.JSON是什么？
+                JSON是一种与语言无关的数据格式
+            2.python中JSON操作
+                1.json.dump() / json.dumps()
+                2.json.load() / json.loaps()
+            3.JS中JSON操作
+                1.JSON.pare()
+                2.JSON.stringify()
+        2.浏览器往服务端发请求的方式
+            1.from表单
+            2.直接在url中输入网址按回车
+            3.a标签
+    1.AJAX
+        1.定义
+            1.异步的JavaScript和XML
+            2.使用js和服务端进行数据通信的方式

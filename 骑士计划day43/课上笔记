@@ -1,0 +1,179 @@
+已经学过的：
+    python基础
+        语法规范
+        变量
+        数据类型和数据类型的内置方法
+        函数
+            函数的定义
+            函数的调用
+            函数的参数和返回值
+            内置函数
+            匿名函数
+            迭代器
+            生成器
+            闭包 （提过一嘴）---> 装饰器没讲
+            递归 （提过一嘴)
+        常用的第三方模块
+        对象
+            面向对象编程
+            类的定义
+            面向对象的三大特征
+            内置方法
+        网络编程
+            socket
+            socketserver
+            粘包
+        并发编程
+            进程
+            线程
+            协程
+        mysql
+            安装
+            常用的sql语句
+            事务操作
+            ACID
+
+
+    前端
+        html
+        css
+        js
+        jquery
+        bootstarp
+    Django
+        Django基础
+        Django项目
+            CRM
+            路飞学城
+            Django REST framework
+            vue2.0
+    Flask
+        Flask基础
+        人工智能
+        redis
+    爬虫
+        Tornado
+        SCarpy
+        redis
+    算法和设计模式
+    linux
+        常用命名
+        nginx
+
+1.内容回顾
+    1.mysql
+        1.下载和安装
+            1.压缩包
+            2.可执行文件
+        2.mysql配置
+        3.常用sql语句
+            1.常见用户和授权
+            2.常见数据库
+            3.常见数据表
+            4.增
+                insert into table1 (name,hobby) values ('alex','男')
+                删
+                drop table1;   --删除表
+                delete form table1 where id = 1;    --删除数据行
+                改
+                update table1 set hobby='吹呢牛逼' where name = 'alex'
+                查
+                select * from table1;
+                select name,hobby from table1 where id = 1;
+            5.连表查询
+                left join
+                inner join
+                right join
+            6.数据库类型
+                1.关系型数据库
+                    mysql oracle sql server
+                2.非关系型数据库 NoSQL
+                    redis
+            7.mysql存储引擎
+                1.InnoDB 支持事务操作，外键约束，行级锁
+                2.myisam
+                3.blackhole
+                4.memory
+            8.字段类型
+                1.int
+                    1.有符号(2**-128~ 2**-127)
+                    2.无符号
+                2.varchar(20)
+                    节省空间/查询慢
+                3.char(20)
+                    占用空间固定/查询快
+                4.date
+                5.datetime
+                6.time
+                7.timetamp
+                8.year
+                9.枚举
+            9.约束
+                1.not null
+                2.unique        唯一
+                3.primary key
+                4.foreign key
+                5.auto_increment
+            10.数据库表结构设计
+                1.外键的关联
+                2.多对多关联
+总结：
+    目前主要掌握的mysql部分
+        1.常用的字段
+        2.常用的sql语句
+
+2.今日内容
+    1.pymysql模块
+        1.安装
+        pip install pymysql
+    2.使用
+        1.导入pymysql
+            import pymysql
+        2.连接
+            conn = pymysql.connect(
+                host:'127.0.0.1',
+                port:3306,
+                user:'root',
+                password:'123456',
+                database:'day43',
+                charset = 'utf8'
+            )
+        3.获取光标对象
+            cursor = conn.cursor()
+        4.执行sql语句
+            cursor.execute('select * from userinfo')
+        5.关闭
+            1.关闭光标
+            cursor.close()
+            2.关闭连接
+            conn.close()
+    3.sql注入问题
+        1.什么是sql注入问题？
+            用户输入的内容有恶意的sql语句，后端拿到用户输入的内容不做检测直接做字符串的拼接，得到一个和预期不一致的sql语句
+        2.如何解决sql注入？
+            对用户输入的内容做检测
+            pymysql内置了这种检测，我们只需要让pymysql帮我们拼接sql语句
+            ret = cursor.execute(sql,[name,pwd])   # 让pymysql模块帮我们拼接mysql语句，执行sql语句
+    4.pymysql的使用
+        # 涉及到操作数据库的 一定要提交
+            conn.commit()
+        1.增
+        2.删
+        3.改
+
+        4.查
+            1.返回的数据类型
+                1.默认返回的都是用元组表示的
+                2.规范字典类型的数据
+                    cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+            2.常用的方法
+                1.fetchall()
+                2.fetchone()
+                3.fetchmany(size)
+    5.conn.rollback()
+
+
+
+3.今日任务
+    1.自己制定复习计划(12天复习完day1-day42的内容)
+    2.mysql都要安装好（Django时还会用）

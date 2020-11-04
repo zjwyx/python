@@ -1,0 +1,47 @@
+01 回顾
+    自定义模块
+    模块的两种执行方式
+    __name__,__file__,__all__
+    导入模块的多种方式
+    相对导入
+    random：
+        random.random()
+        random.uniform(a,b)
+        random.randint(a,b)
+        random.shuffle()
+        random.sample(x,k)
+02 今日内容
+    常用模块的介绍
+    time
+    datetime
+    os，sys
+    hashlib，json，pickle，collections
+
+time：和时间相关
+    封装了获取时间戳和字符串形式的时间的一些方法
+
+json模块
+    javascript Object Notation：java脚本兑现标记语言
+    已经成为一种简单的数据交换格式
+
+    序列化：内存中的数据转化成字符串或者字节串，便于网络传输
+
+hashlib模块
+    封装一些用于加密的类：
+    md5(),....
+    加密的目的，用户判断和验证，而并非解密
+    特点：
+        把一个大的数据，切分成不同的块，分别对不同的块进行加密，再汇总的结果，和直接对整体数据加密的结果是一致的
+        单向加密，不可逆
+        原始数据的一点小的变化，将导致结果的非常大的差异，‘雪崩’效应
+
+03 总结
+    自定义模块
+    random
+    time
+    datetime
+    json，pickle
+    os
+    sys
+    hashlib
+    collections（元组，字典dic，Counter计数）

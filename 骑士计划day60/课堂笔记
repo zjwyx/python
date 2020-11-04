@@ -1,0 +1,45 @@
+1.内容回顾
+    1.内容回顾
+        1.ORM里面设置多对多
+            1.book = models.ManyToManyField(to='Book')
+        2.多对多字段应该建立在那张表
+            建在那张表都可以，通常是建立在正向查询多的那一边
+        3.多对多增删改查
+            1.查
+                1.Author.objects.all()              -->[对象1，对象2]
+                2.Author.objects.filter(条件)        -->[对象1，对象2]
+                3.Author.objects.get()              -->对象
+                多对多查询
+                4.author_obj.book.all()          --> [book_obj1,book_obj2...]
+            2.增
+                author_obj.book.add(id1,id2)     --> 多对多添加关联的数据
+            3.删
+            4.改
+                author_obj.book.set([id1,id2])   --> 多对多的设置关联的数据
+
+    2.昨日问题
+        1.author_obj.book.add(*[id1,id2])        --> 多对多添加关联的数据
+        2.form表单get请求会自己拼接URl参数，不能自己通过action指定
+
+
+
+2.今日内容
+    1.函数的知识点
+    2.闭包
+    3.装饰器的定义
+        1.装饰器的定义
+            def wrapper(func):
+                def inner(*args,**kwargs):
+                    print('新功能')
+                    func()
+                return inner
+
+    4.装饰器进阶
+        1.装饰带参数的函数
+        2.装饰带返回值的函数
+        3.带参数的装饰器           *****
+        4.多个装饰器装饰同一个函数   *****
+        5.修复技术                 ****
+    5.装饰器究极进阶(自己去了解)
+        1.类装饰器
+        2.装饰类

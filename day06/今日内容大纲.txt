@@ -1,0 +1,42 @@
+01 昨日内容回顾
+    字典:
+        key:value形式
+        key:不可变（可哈希）的数据类型
+        value:任意数据类型，对象
+        大量的大户局，关系型数据，查询速度非常快
+        3.5版本中之前，字典是无序的，
+        python3.6之后，字典是有序的
+        增：
+            dic["name"] = "太白" 有则改之，无则增加
+            setdefault(k,v) 有责不改，无则增加
+
+        删：
+            pop() 按照键去删除有返回值
+            dic.pop('name',NoN)
+            clear() 清空
+            del
+                del dic["name"]
+                del dic
+            popitem()  有返回值
+                 3.5版本中之前，字典是无序的， 随机删除
+                 python3.6之后，字典是有序的   默认删除最后一个
+
+        改：
+            dic["name"] = "alex"
+            updata(字典)
+            updata(sex='man)
+
+        查：
+            按键去查
+                dic["name"]
+            get()
+            dic.keys()  dic.values()  dic.items()
+            元组的拆包
+02 作业讲解
+03 今日内容
+    is === id
+    代码块
+    小数据池
+    编码:
+04 今日作业
+05 预习内容

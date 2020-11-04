@@ -1,0 +1,27 @@
+1.内容回顾
+    1.今日面试题
+        1.数据库（漫画数据库）
+        2.表结构设计
+    2.上周内容
+
+2.今日内容
+    1.Bootstrap
+        1.Bootstrap是什么？
+            就是一些HTML代码和css代码的组合
+        2.如何使用？
+            复制粘贴一把梭
+        3.Bootstrap
+            1.栅格系统
+                1.row表示行，必须放在container或container-fluid
+                2.row被均分成12列，列的语法是col-xx-**
+                    xx的取值范围：xs->sm->md->lg
+                    **的取值范围:1-12
+                3.只有列能作为行的子元素
+
+                4.列偏移
+                    col-xx-offset-**
+                5.列嵌套
+                    任意一列，都可以在内部定义row
+                6.列排序
+                col-xx-push-**
+                col-xx-pull-**

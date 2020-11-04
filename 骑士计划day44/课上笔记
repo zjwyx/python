@@ -1,0 +1,42 @@
+1.内容回顾
+    1.pymysql
+        1.安装
+            pip install pymysql
+            补充
+            pip -v  --->查看pip的版本
+            pip list  -->查看当前python解释器中安装的第三方包和版本号
+        2.pymysql连接mysql数据库
+            1.import pymysql
+            2.conn = pymysql.connect(
+                   host = '127.0.0.1',
+                   port=3306
+                   user='root',
+                   password='123456',
+                   database='day43',
+                   charset='utf8'
+              )
+            3.获取光标对象
+                cursor = conn.cursor()      -->默认返回的是元组类型的数据
+                cursor = conn.cursor(cursor=pymysql.cursor.DictCursor)  -->默认返回的是字典类型的数据
+            4.用光标对象执行sql语句
+                1.sql注入问题
+                2.让pymysql帮我们拼接sql语句
+                cursor.execute(sql语句,[参数1，参数2])
+            5.提交
+                1.当涉及到数据库（增，删，改）时，需要将操作提交到数据库才生效
+                    conn.commit()
+            6.回滚
+                conn.rollback()
+            7.关闭
+                1.关闭光标对象
+                    cursor.close()
+                2.关闭连接
+                    conn.close()
+            8.查询
+                cursor.execute('select * from userinfo')
+                1.cursor.ferchall()  -->查询所有
+                2.cursor.ferchone()  -->查询一个
+                3.cursor.ferchmany(size)  -->查询指定个数的数据
+            9.查询时移动光标
+                1.cursor.scroll(位置,mode='absolute')
+

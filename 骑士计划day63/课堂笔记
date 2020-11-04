@@ -1,0 +1,108 @@
+1.内容回顾
+    1.Django模板语法
+        1.语法
+            1.{{}}
+            2.{%  %}
+        2.变量
+            1.变量.的语法
+                1.字典key
+                2.属性，方法
+                3.索引
+            2.filters
+                1.内置的filter
+                2.自定义的filter
+                    1.定义阶段
+                        1.在app下面新建一个python package，名字必须叫templatetags
+                        2.在上面的包中新建一个py文件
+                        3.写一个函数，按照Django规定注册
+                            from django import template
+                            register = template.Library()
+
+                            @register.filter()
+                            def xx(value):
+                                return ...
+                    2.调用阶段
+                        1.先导入
+                            {% load py文件 %}
+                        2.后使用
+                            {{ 变量|xx }}
+            3.tags
+                1.for循环
+                2.if判断
+                3.with
+                4.csrftoken
+
+            4.母版/块/继承
+                1.定义母版
+                    把很多页面共用的那部分HTML代码方法放到单独的base.html文件中
+                2.定义块
+                    {% block page_css %}{% endblock page_css %}
+                3.继承
+                    {% extend 'base.html' %}
+            5.组件
+                1.把某个单独的HTML代码做成一个随时可导入使用的组件
+                    {% include 'nav.html' %}
+            6.静态文件相关
+                1.为什么要用静态文件相关的tag来拼接静态文件的路径
+                    1.避免在页面上硬编码静态文件路径
+                2.{% load static %}
+                    <link href="{% static 'css/xx.css' %}">
+                3.{% get_static_prefix %}
+                    <link href="{% get_static_prefix %}css/xx.css">
+            7.自定义的simplate_tag
+                1.处理复杂逻辑的自定义功能
+                2.写法自定义filter类似
+            8.自定义的inclusiog_tag
+                1.接受数据返回一段HTML代码(类似于页面上的render函数)
+
+
+2.今日内容
+    1.Django视图
+        1.FBV和CBV(Function Base View 和 Class Base View)
+    2.request对象的属性和方法
+        1.request.method
+        2.request.path_info            --> 获取url路径(不带参数)
+        3.request.get_full_path()      --> 获取url(带参数)
+        4.request.GET
+        5.request.POST
+            1.request.POST.get()
+            2.request.POST.getlist()
+        6.request.FILES
+        7.request.body
+        8.request.META
+    3.上传文件
+        1.form表单需要加enctype=‘multipart/form-data’
+        2.request.FILES        --> 大字典
+        3.在后端自行写代码保存上传的文件
+            with open(filename_obj,'wb') as f:
+                for i in filename_obj.chunks():
+                    f.write(i)
+
+    4.response
+        1.基础必会三件套
+            from django.shortcuts import render,HttpResponse,redirect
+    5.路由系统
+        1.正则表达式
+            1.Django项目匹配url路径的时候是从上到下按照注册顺序来的
+            2.Django的路由系统只匹配url路径，不匹配域名，端口，url参数
+            3.分组匹配         -->相当于给视图函数传位置参数
+            4.分组命名匹配         -->相当于给视图函数传关键字参数
+            5.注意
+                分组匹配和分组命名匹配不能混和使用！！
+        2.给url起别名
+            1.name = '别名'           --> 起别名的目的是为了反向解析url的时候有依据
+        3.通过名字反向解析
+            1.在视图函数中
+                from django.url import reverse
+                revser('别名')
+            2.在模板HTML页面
+                {% url '别名' '参数1'... %}
+        4.namespace模式
+            所有以app01开头的都交给app01/url.py去处理
+            url(r'^app01/',include(app01_url,namespace='app01'))
+            所有以xiayuhang开头的都交给app02/url.py去处理
+            url(r'^app02/',include(app02_url,namespace='app02'))
+
+
+3.今日作业
+    1.简单的看一下request.META里面都有什么，要有一个印象

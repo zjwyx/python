@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django模板语言的语法</title>
+</head>
+<body>
+<p>{{ name }}</p>
+<p>{{ age }}</p>
+<hr>
+<p>{{ d1.name }}</p>
+<p>{{ d1.age }}</p>
+<p>如果属性或者key和方法重名，优先显示属性</p>
+<hr>
+<p>对象.方法.不要加括号</p>
+<p>{{ sb.dream }}</p>
+<p>对象.属性</p>
+<p>{{ sb.name }}</p>
+<p>{{ sb.age }}</p>
+<hr>
+<h1>列表按照索引取值</h1>
+<h1>{{ f5.3 }}</h1>
+<h1>支持链式操作</h1>
+<h2>{{ f6.1.name }}</h2>
+<h2>{{ f6.1.age }}</h2>
+<h2>{{ f6.1.dream }}</h2>
+</body>
+</html>
